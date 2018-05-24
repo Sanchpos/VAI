@@ -17,4 +17,6 @@ npm run build
 # build for production and view the bundle analyzer report
 npm run build --report
 ```
-Добавил компоненты https://vuetifyjs.com/ и axios(для работы с апи)
+Доки по vue https://ru.vuejs.org
+Еще добавил компоненты https://vuetifyjs.com/ и axios(для работы с апи)
+
