@@ -10,5 +10,7 @@ namespace Vai.Data.Models
         public Guid Id { get; set; }
 
         public string Name { get; set; }
+
+        public ICollection<SportResearch> Researches { get; set; }
     }
 }

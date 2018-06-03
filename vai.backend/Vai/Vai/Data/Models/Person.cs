@@ -13,5 +13,7 @@ namespace Vai.Data.Models
         public string LastName { get; set; }
         public string MiddleName { get; set; }
         public Gender Gender { get; set; }
+
+        public ICollection<Research> Researches { get; set; }
     }
 }
