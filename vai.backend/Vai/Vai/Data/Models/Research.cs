@@ -81,7 +81,9 @@ namespace Vai.Data.Models
 
         [ForeignKey(nameof(TestsData))]
         public Guid TestDataId { get; set; }
-        public TestsData TestData { get; set; }
+        public TestsData TestDataInternal { get; set; }
+        [NotMapped]
+        public ITestData TestData => TestDataInternal;
 
         public double PullUpStandart { get; set; }
         public double Pushes { get; set; }

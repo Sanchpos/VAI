@@ -3,24 +3,34 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Vai.Data;
+using Vai.Data.Models;
 
 namespace Vai.Controllers
 {
     [Route("api/[controller]")]
-    public class ValuesController : Controller
+    public class PersonController : Controller
     {
-        // GET api/values
-        [HttpGet]
-        public IEnumerable<string> Get()
+        private readonly DataContext dataContext;
+
+        public PersonController(DataContext dataContext)
         {
-            return new string[] { "value1", "value2" };
+            this.dataContext = dataContext;
         }
 
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [HttpGet]
+        public IEnumerable<Person> Get()
         {
-            return "value";
+            return dataContext.Persons.ToList();
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult Get(Guid id)
+        {
+            if (!ModelState.IsValid) return NotFound();
+            var person = dataContext.Persons.Include(p => p.Researches);
+            return Json(person);
         }
 
         // POST api/values
