@@ -9,16 +9,21 @@ namespace Tests
     {
         private class TestClass
         {
-            public string InnerRunTests { get; set; }
-            private Lazy<Base64Field<TestClass, double[]>> runtestsLazy;
-            public Base64Field<TestClass, double[]> RunTests
+            public string InnerTestField { get; set; }
+            private Base64Field<TestClass, double[]> testField;
+            public double[] TestProp
             {
                 get
                 {
-                    if (runtestsLazy != null) return runtestsLazy.Value;
-                    runtestsLazy = new Lazy<Base64Field<TestClass, double[]>>(
-                        () => new Base64Field<TestClass, double[]>(this, nameof(InnerRunTests)));
-                    return runtestsLazy.Value;
+                    if (testField == null)
+                        testField = new Base64Field<TestClass, double[]>(this, nameof(InnerTestField));
+                    return testField.Value;
+                }
+                set
+                {
+                    if (testField == null)
+                        testField = new Base64Field<TestClass, double[]>(this, nameof(InnerTestField));
+                    testField.Value = value;
                 }
             }
         }
@@ -28,8 +33,8 @@ namespace Tests
         {
             var testObj = new TestClass();
             var expectedVal = new[] { 0.2, 0.45662, 84 };
-            testObj.RunTests.Value = expectedVal;
-            var actualValue = testObj.RunTests.Value;
+            testObj.TestProp= expectedVal;
+            var actualValue = testObj.TestProp;
             Assert.True(actualValue.SequenceEqual(expectedVal));
         }
     }

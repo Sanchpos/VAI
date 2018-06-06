@@ -17,6 +17,6 @@ namespace Vai.Data.Models
         double[] TestPassedMotion { get; set; }
         double[] TestPassedTapping { get; set; }
         double[] TestDataTappingChernikova { get; set; }
-        double[] RusalovTest { get; set; }
+        Dictionary<string, bool> RusalovTest { get; set; }
     }
 }

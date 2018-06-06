@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Vai.Data;
@@ -20,17 +21,22 @@ namespace Vai.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Person> Get()
+        [Authorize]
+        public async Task<IActionResult> Get()
         {
-            return dataContext.Persons.ToList();
+            var persons = await dataContext.Persons.ToArrayAsync();
+            return Json(new { result = persons });
         }
 
         [HttpGet("{id}")]
-        public IActionResult Get(Guid id)
+        public async Task<IActionResult> Get(Guid id)
         {
             if (!ModelState.IsValid) return NotFound();
-            var person = dataContext.Persons.Include(p => p.Researches);
-            return Json(person);
+            var person = await dataContext.Persons
+                .Include(p => p.Researches)
+                .SingleOrDefaultAsync(p => p.Id == id);
+            if (person == null) return NotFound();
+            return Json(new { result = person });
         }
 
         // POST api/values

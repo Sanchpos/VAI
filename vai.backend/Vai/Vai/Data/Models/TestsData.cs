@@ -17,100 +17,135 @@ namespace Vai.Data.Models
         public Research Research { get; set; }
 
         public string InnerRunTests { get; set; }
-        private Lazy<Base64Field<TestsData, double[]>> runtestsLazy;
+        private Base64Field<TestsData, double[]> runtestsField;
         [NotMapped]
         public double[] RunTests
         {
             get
             {
-                if (runtestsLazy != null) return runtestsLazy.Value.Value;
-                runtestsLazy = new Lazy<Base64Field<TestsData, double[]>>(
-                    () => new Base64Field<TestsData, double[]>(this, nameof(InnerRunTests)));
-                return runtestsLazy.Value.Value;
+                if (runtestsField == null)
+                    runtestsField = new Base64Field<TestsData, double[]>(this, nameof(InnerRunTests));
+                return runtestsField.Value;
+            }
+            set
+            {
+                if (runtestsField == null)
+                    runtestsField = new Base64Field<TestsData, double[]>(this, nameof(InnerRunTests));
+                runtestsField.Value = value;
             }
         }
 
         public string InnerTestPassedFlash { get; set; }
-        private Lazy<Base64Field<TestsData, double[]>> testPassedFlashLazy;
+        private Base64Field<TestsData, double[]> testPassedFlashField;
         [NotMapped]
         public double[] TestPassedFlash
         {
             get
             {
-                if (testPassedFlashLazy != null) return runtestsLazy.Value.Value;
-                testPassedFlashLazy = new Lazy<Base64Field<TestsData, double[]>>(
-                    () => new Base64Field<TestsData, double[]>(this, nameof(InnerTestPassedFlash)));
-                return testPassedFlashLazy.Value.Value;
+                if (testPassedFlashField == null)
+                    testPassedFlashField = new Base64Field<TestsData, double[]>(this, nameof(InnerTestPassedFlash));
+                return testPassedFlashField.Value;
+            }
+            set
+            {
+                if (testPassedFlashField == null)
+                    testPassedFlashField = new Base64Field<TestsData, double[]>(this, nameof(InnerTestPassedFlash));
+                testPassedFlashField.Value = value;
             }
         }
 
         public string InnerTestPassedSound { get; set; }
-        private Lazy<Base64Field<TestsData, double[]>> testPassedSoundLazy;
+        private Base64Field<TestsData, double[]> testPassedSoundField;
         [NotMapped]
         public double[] TestPassedSound
         {
             get
             {
-                if (testPassedSoundLazy != null) return testPassedSoundLazy.Value.Value;
-                testPassedSoundLazy = new Lazy<Base64Field<TestsData, double[]>>(
-                    () => new Base64Field<TestsData, double[]>(this, nameof(InnerTestPassedSound)));
-                return testPassedSoundLazy.Value.Value;
+                if (testPassedSoundField != null)
+                    testPassedSoundField = new Base64Field<TestsData, double[]>(this, nameof(InnerTestPassedSound));
+                return testPassedSoundField.Value;
+            }
+            set
+            {
+                if (testPassedSoundField != null)
+                    testPassedSoundField = new Base64Field<TestsData, double[]>(this, nameof(InnerTestPassedSound));
+                testPassedSoundField.Value = value;
             }
         }
 
         public string InnerTestPassedMotion { get; set; }
-        private Lazy<Base64Field<TestsData, double[]>> testPassedMotionLazy;
+        private Base64Field<TestsData, double[]> testPassedMotionField;
         [NotMapped]
         public double[] TestPassedMotion
         {
             get
             {
-                if (testPassedMotionLazy != null) return testPassedMotionLazy.Value.Value;
-                testPassedMotionLazy = new Lazy<Base64Field<TestsData, double[]>>(
-                    () => new Base64Field<TestsData, double[]>(this, nameof(TestPassedMotion)));
-                return testPassedMotionLazy.Value.Value;
+                if (testPassedMotionField != null);
+                    testPassedMotionField = new Base64Field<TestsData, double[]>(this, nameof(TestPassedMotion));
+                return testPassedMotionField.Value;
+            }
+            set
+            {
+                if (testPassedMotionField != null) ;
+                    testPassedMotionField = new Base64Field<TestsData, double[]>(this, nameof(TestPassedMotion));
+                testPassedMotionField.Value = value;
             }
         }
 
         public string InnerTestPassedTapping { get; set; }
-        private Lazy<Base64Field<TestsData, double[]>> testPassedTappingLazy;
+        private Base64Field<TestsData, double[]> testPassedTappingField;
         [NotMapped]
         public double[] TestPassedTapping
         {
             get
             {
-                if (testPassedTappingLazy != null) return testPassedTappingLazy.Value.Value;
-                testPassedTappingLazy = new Lazy<Base64Field<TestsData, double[]>>(
-                    () => new Base64Field<TestsData, double[]>(this, nameof(InnerTestPassedTapping)));
-                return testPassedTappingLazy.Value.Value;
+                if (testPassedTappingField != null)
+                    testPassedTappingField =  new Base64Field<TestsData, double[]>(this, nameof(InnerTestPassedTapping));
+                return testPassedTappingField.Value;
+            }
+            set
+            {
+                if (testPassedTappingField != null)
+                    testPassedTappingField = new Base64Field<TestsData, double[]>(this, nameof(InnerTestPassedTapping));
+                testPassedTappingField.Value = value;
             }
         }
 
         public string InnerTestDataTappingChernikova { get; set; }
-        private Lazy<Base64Field<TestsData, double[]>> testDataTappingChernikovaLazy;
+        private Base64Field<TestsData, double[]> testDataTappingChernikovaField;
         [NotMapped]
         public double[] TestDataTappingChernikova
         {
             get
             {
-                if (testDataTappingChernikovaLazy != null) return testDataTappingChernikovaLazy.Value.Value;
-                testDataTappingChernikovaLazy = new Lazy<Base64Field<TestsData, double[]>>(
-                    () => new Base64Field<TestsData, double[]>(this, nameof(InnerTestDataTappingChernikova)));
-                return testPassedTappingLazy.Value.Value;
+                if (testDataTappingChernikovaField != null)
+                    testDataTappingChernikovaField = new Base64Field<TestsData, double[]>(this, nameof(InnerTestDataTappingChernikova));
+                return testDataTappingChernikovaField.Value;
+            }
+            set
+            {
+                if (testDataTappingChernikovaField != null)
+                    testDataTappingChernikovaField = new Base64Field<TestsData, double[]>(this, nameof(InnerTestDataTappingChernikova));
+                testDataTappingChernikovaField.Value = value;
             }
         }
 
         public string InnerRusalovTest { get; set; }
-        private Lazy<Base64Field<TestsData, Dictionary<string, bool>>> rusalovTestLazy;
+        private Base64Field<TestsData, Dictionary<string, bool>> rusalovTestLazy;
         [NotMapped]
         public Dictionary<string, bool> RusalovTest
         {
             get
             {
-                if (rusalovTestLazy != null) return rusalovTestLazy.Value.Value;
-                rusalovTestLazy = new Lazy<Base64Field<TestsData, Dictionary<string, bool>>>(
-                    () => new Base64Field<TestsData, Dictionary<string, bool>>(this, nameof(InnerRusalovTest)));
-                return rusalovTestLazy.Value.Value;
+                if (rusalovTestLazy != null)
+                    rusalovTestLazy = new Base64Field<TestsData, Dictionary<string, bool>>(this, nameof(InnerRusalovTest));
+                return rusalovTestLazy.Value;
+            }
+            set
+            {
+                if (rusalovTestLazy != null)
+                    rusalovTestLazy = new Base64Field<TestsData, Dictionary<string, bool>>(this, nameof(InnerRusalovTest));
+                rusalovTestLazy.Value = value;
             }
         }
     }
