@@ -10,7 +10,7 @@ namespace Vai.Data.Models.Authorization
     public class User : IdentityUser
     {
         [ForeignKey(nameof(Person))]
-        public Guid PersonId { get; set; }
+        public Guid? PersonId { get; set; }
         public Person Person { get; set; }
     }
 }

@@ -32,7 +32,7 @@ namespace Vai
             services.AddIdentity<User, IdentityRole>(options =>
                 {
                     options.Password.RequireDigit = true;
-                    options.Password.RequiredLength = 8;
+                    options.Password.RequiredLength = 6;
                     options.Password.RequiredUniqueChars = 2;
                     options.Password.RequireLowercase = true;
                     options.Password.RequireNonAlphanumeric = false;
