@@ -4,6 +4,8 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authorization.Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -13,6 +15,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Vai.Data;
 using Vai.Data.Models.Authorization;
+using Vai.Services;
 
 namespace Vai
 {
@@ -29,7 +32,7 @@ namespace Vai
         {
             services.AddDbContext<DataContext>(o => o.UseSqlite("Data Source=vai.db")); // temporary, should be changed to normal db
 
-            services.AddIdentity<User, IdentityRole>(options =>
+            services.AddIdentity<User, Role>(options =>
                 {
                     options.Password.RequireDigit = true;
                     options.Password.RequiredLength = 6;
@@ -62,10 +65,13 @@ namespace Vai
                         ClockSkew = TimeSpan.Zero
                     };
                 });
+
+            services.AddScoped<IAuthorizationHandler, OwnerOrStaffAutherizationHandler>();
+            services.AddTransient<DbSeeder>();
             services.AddMvc();
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, DbSeeder seeder)
         {
             if (env.IsDevelopment())
             {
@@ -74,6 +80,8 @@ namespace Vai
 
             app.UseAuthentication();
             app.UseMvc();
+
+            seeder.Initialize();
         }
     }
 }

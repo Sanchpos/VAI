@@ -46,7 +46,7 @@ namespace Vai.Controllers
 
             if (result.Succeeded)
             {
-                var appUser = _userManager.Users.SingleOrDefault(r => r.Email == model.Email);
+                var appUser = await _userManager.FindByNameAsync(model.Email);
                 return Json(new { token = GenerateJwtToken(model.Email, appUser) });
             }
 
@@ -72,13 +72,13 @@ namespace Vai.Controllers
             return Unauthorized();
         }
 
-        private string GenerateJwtToken(string email, IdentityUser user)
+        private string GenerateJwtToken(string username, User user)
         {
             var claims = new List<Claim>
             {
-                new Claim(JwtRegisteredClaimNames.Sub, email),
+                new Claim(JwtRegisteredClaimNames.Sub, username),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                new Claim(ClaimTypes.NameIdentifier, user.Id)
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString())
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JwtKey"]));

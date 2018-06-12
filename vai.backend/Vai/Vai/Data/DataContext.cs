@@ -9,7 +9,7 @@ using Vai.Data.Models.Authorization;
 
 namespace Vai.Data
 {
-    public class DataContext : IdentityDbContext
+    public class DataContext : IdentityDbContext<User, Role, Guid>
     {
         public DbSet<Person> Persons { get; set; }
         public DbSet<Research> Researches { get; set; }

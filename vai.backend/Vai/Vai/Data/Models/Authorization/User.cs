@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace Vai.Data.Models.Authorization
 {
-    public class User : IdentityUser
+    public class User : IdentityUser<Guid>
     {
-        [ForeignKey(nameof(Person))]
-        public Guid? PersonId { get; set; }
+        [ForeignKey(nameof(PersonId))]
         public Person Person { get; set; }
+        public Guid? PersonId { get; set; }
     }
 }

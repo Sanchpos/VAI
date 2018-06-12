@@ -11,6 +11,8 @@
     <Compile Remove="Migrations\20180604171937_auth.Designer.cs" />
     <Compile Remove="Migrations\20180604173014_auth.cs" />
     <Compile Remove="Migrations\20180604173014_auth.Designer.cs" />
+    <Compile Remove="Migrations\20180606154246_init.cs" />
+    <Compile Remove="Migrations\20180606154246_init.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
