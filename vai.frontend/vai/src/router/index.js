@@ -1,20 +1,21 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-// import HelloWorld from '@/components/HelloWorld'
+import HelloWorld from '@/components/HelloWorld'
 import Research from '@/components/Research'
 
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
       name: 'HelloWorld',
-      component: Research
+      component: HelloWorld
     },
     {
-      path: 'research',
-      name: 'research',
+      path: '/research',
+      name: 'Research',
       component: Research
     }
   ]
